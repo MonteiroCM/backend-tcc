@@ -1,4 +1,4 @@
-const UserController = require('./app/Controllers/UserController.js')
+const UserController = require('/app/Controllers/UserController.js')
 const AuthController = require('./app/Controllers/AuthController.js')
 const ProdutoController = require('./app/Controllers/ProdutoController.js')
 const EstabelecimentoController = require('./app/Controllers/EstabelecimentoController.js')
