@@ -1,12 +1,12 @@
-const UserController = require('./app/Controllers/UserController')
-const AuthController = require('./app/Controllers/AuthController')
-const ProdutoController = require('./app/Controllers/ProdutoController')
-const EstabelecimentoController = require('./app/Controllers/EstabelecimentoController')
-const CategoriaController = require('./app/Controllers/CategoriaController')
-const TamanhoController = require('./app/Controllers/TamanhoController')
-const ItemVendaController = require('./app/Controllers/ItemVendaController')
-const PedidoController = require('./app/Controllers/PedidoController')
-const FileController = require('./app/Controllers/FileController')
+const UserController = require('./app/Controllers/UserController.js')
+const AuthController = require('./app/Controllers/AuthController.js')
+const ProdutoController = require('./app/Controllers/ProdutoController.js')
+const EstabelecimentoController = require('./app/Controllers/EstabelecimentoController.js')
+const CategoriaController = require('./app/Controllers/CategoriaController.js')
+const TamanhoController = require('./app/Controllers/TamanhoController.js')
+const ItemVendaController = require('./app/Controllers/ItemVendaController.js')
+const PedidoController = require('./app/Controllers/PedidoController.js')
+const FileController = require('./app/Controllers/FileController.js')
 
 function rotas(App) {
 
