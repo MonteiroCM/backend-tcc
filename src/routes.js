@@ -1,12 +1,12 @@
-import { listar, store, login, listarCliente, storeEndereco, listarEndereco, updateEndereco, deleteEndereco } from './app/Controllers/UserController'
-import { validateSession, loadSession } from './app/Controllers/AuthController'
-import { store as _store, listar as _listar, update} from './app/Controllers/ProdutoController'
-import { store as __store, listar as __listar, update as _update, delete as _delete } from './app/Controllers/EstabelecimentoController'
-import { store as ___store, listar as ___listar, update as __update, delete as __delete } from './app/Controllers/CategoriaController'
-import { store as ____store, listar as ____listar, update as ___update, delete as ___delete } from './app/Controllers/TamanhoController'
-import { store as _____store, listar as _____listar, update as ____update, delete as ____delete } from './app/Controllers/ItemVendaController'
-import { store as ______store, listar as ______listar, update as _____update } from './app/Controllers/PedidoController'
-import { upload } from './app/Controllers/FileController'
+const UserController = require('./app/Controllers/UserController')
+const AuthController = require('./app/Controllers/AuthController')
+const ProdutoController = require('./app/Controllers/ProdutoController')
+const EstabelecimentoController = require('./app/Controllers/EstabelecimentoController')
+const CategoriaController = require('./app/Controllers/CategoriaController')
+const TamanhoController = require('./app/Controllers/TamanhoController')
+const ItemVendaController = require('./app/Controllers/ItemVendaController')
+const PedidoController = require('./app/Controllers/PedidoController')
+const FileController = require('./app/Controllers/FileController')
 
 function rotas(App) {
 
@@ -14,51 +14,50 @@ App.get('/', (req, res) => {
   res.status(200).send({ message: '😁' })
 })
 
-App.get('/users',validateSession, listar)
-App.post('/users', store)
-App.post('/login', login)
-App.get('/clientes',validateSession, listarCliente)
+App.get('/users',AuthController.validateSession, UserController.listar)
+App.post('/users', UserController.store)
+App.post('/login', UserController.login)
+App.get('/clientes',AuthController.validateSession, UserController.listarCliente)
 
-App.post('/loadSession', loadSession)
+App.post('/loadSession', AuthController.loadSession)
 
-App.post('/produtos', _store)
-App.get('/produtos', _listar)
-App.put('/produtos/:id', update)
-//App.delete('/produtos/:id', delete)
+App.post('/produtos', ProdutoController.store)
+App.get('/produtos', ProdutoController.listar)
+App.put('/produtos/:id', ProdutoController.update)
+App.delete('/produtos/:id', ProdutoController.delete)
 
-App.post('/estabelecimentos', __store)
-App.get('/estabelecimentos', __listar)
-App.put('/estabelecimentos/:id', _update)
-App.delete('/estabelecimentos/:id', _delete)
+App.post('/estabelecimentos', EstabelecimentoController.store)
+App.get('/estabelecimentos', EstabelecimentoController.listar)
+App.put('/estabelecimentos/:id', EstabelecimentoController.update)
+App.delete('/estabelecimentos/:id', EstabelecimentoController.delete)
 
-App.post('/categorias', ___store)
-App.get('/categorias', ___listar)
-App.put('/categorias/:id', __update)
-App.delete('/categorias/:id', __delete)
+App.post('/categorias', CategoriaController.store)
+App.get('/categorias', CategoriaController.listar)
+App.put('/categorias/:id', CategoriaController.update)
+App.delete('/categorias/:id', CategoriaController.delete)
 
-App.post('/tamanhos', ____store)
-App.get('/tamanhos', ____listar)
-App.put('/tamanhos/:id', ___update)
-App.delete('/tamanhos/:id', ___delete)
+App.post('/tamanhos', TamanhoController.store)
+App.get('/tamanhos', TamanhoController.listar)
+App.put('/tamanhos/:id', TamanhoController.update)
+App.delete('/tamanhos/:id', TamanhoController.delete)
 
-App.post('/itemvendas', _____store)
-App.get('/itemvendas', _____listar)
-App.put('/itemvendas/:id', ____update)
-App.delete('/itemvendas/:id', ____delete)
+App.post('/itemvendas', ItemVendaController.store)
+App.get('/itemvendas', ItemVendaController.listar)
+App.put('/itemvendas/:id', ItemVendaController.update)
+App.delete('/itemvendas/:id', ItemVendaController.delete)
 
 //Rotas Pedidos
-App.post('/pedidos', ______store)
-App.get('/pedidos', ______listar)
-App.put('/pedidos/:id', _____update)
-App.post('/upload/:id', upload)
+App.post('/pedidos', PedidoController.store)
+App.get('/pedidos', PedidoController.listar)
+App.put('/pedidos/:id', PedidoController.update)
+App.post('/upload/:id', FileController.upload)
 
-App.post('/enderecos', storeEndereco)
-App.get('/enderecos', listarEndereco)
-App.put('/enderecos/:id', updateEndereco)
-App.delete('/enderecos/:id', deleteEndereco)
+App.post('/enderecos', UserController.storeEndereco)
+App.get('/enderecos', UserController.listarEndereco)
+App.put('/enderecos/:id', UserController.updateEndereco)
+App.delete('/enderecos/:id', UserController.deleteEndereco)
 }
 
- const _rotas = rotas
-export { _rotas as rotas }
+ exports.rotas = rotas
 
 
