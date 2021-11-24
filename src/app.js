@@ -6,7 +6,7 @@ const path = require('path')
 
 console.log('--->')
 const User = require('./pasta/models/User')
-const UserController = require('./pasta/Controllers/UserController')
+console.log('--->', User)
 const routes = require('./routes')
 
 console.log('APP', routes)
