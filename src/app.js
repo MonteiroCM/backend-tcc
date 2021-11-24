@@ -4,12 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 
-var loc = window.location.pathname;
-var dir = loc.substring(0, loc.lastIndexOf('/'));
-
-
-console.log('dir >>', dir)
-
+const UserController = require('./app/Controllers/UserController')
 const routes = require('./routes')
 
 console.log('APP', routes)
