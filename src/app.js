@@ -4,7 +4,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 
-const UserController = require('./app/Controllers/UserController')
+console.log('--->')
+const UserController = require('app/Controllers/UserController')
 const routes = require('./routes')
 
 console.log('APP', routes)
