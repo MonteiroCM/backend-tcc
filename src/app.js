@@ -5,8 +5,8 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 console.log('--->')
-const User = require('./app/models/User')
-const UserController = require('app/Controllers/UserController')
+const User = require('./APP/models/User')
+const UserController = require('./APP/Controllers/UserController')
 const routes = require('./routes')
 
 console.log('APP', routes)
