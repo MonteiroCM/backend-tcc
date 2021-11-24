@@ -5,13 +5,13 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 console.log('--->')
-const User = require('./APP/models/User')
-const UserController = require('./APP/Controllers/UserController')
+const User = require('./pasta/models/User')
+const UserController = require('./pasta/Controllers/UserController')
 const routes = require('./routes')
 
 console.log('APP', routes)
 
-require('./app/models')
+require('./pasta/models')
 
 const App = express()
 
