@@ -25,6 +25,7 @@ App.post('/produtos', ProdutoController.store)
 App.get('/produtos', ProdutoController.listar)
 App.put('/produtos/:id', ProdutoController.update)
 App.delete('/produtos/:id', ProdutoController.delete)
+App.get('/produtos/estatistica', ProdutoController.estatistica)
 
 App.post('/estabelecimentos', EstabelecimentoController.store)
 App.get('/estabelecimentos', EstabelecimentoController.listar)

@@ -1,6 +1,8 @@
 const Produto = require('../models/Produtos')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
+const databaseConfig = require("../../config/database");
+const { Sequelize, Model } = require("sequelize");
 
 const JWT_SECRET = process.env.JWT_SECRET
 
@@ -33,6 +35,24 @@ class ProdutoController {
           }
         }
     })
+  }
+
+  async estatistica(req, res) {
+
+    const sequelize = new Sequelize(databaseConfig);
+    const [results, metadata] = await sequelize.query(
+      `SELECT sum(produtos) as produtos, sum(usuarios) as usuarios, sum(pedidos) as pedidos, sum(categorias) as categorias FROM
+    (
+    select count(*) as produtos, 0 as usuarios, 0 as pedidos, 0 as categorias from produtos
+    UNION ALL
+    select 0 as produtos, count(*) as usuarios, 0 as pedidos, 0 as categorias from users
+    UNION ALL
+    select 0 as produtos, 0 as usuarios, count(*) as pedidos, 0 as categorias from pedidos
+    UNION ALL
+    select 0 as produtos, 0 as usuarios, 0 as pedidos, count(*) as categorias from categorias
+    ) as tab`, { raw: true });
+
+    return res.status(200).json(results)
   }
 
   async listar(req, res) {

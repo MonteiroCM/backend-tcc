@@ -49,9 +49,10 @@ class UserController {
         if(decoded.userId){
           try {
             const novo = req.body.endereco
+            console.log('storeEndereco ', req.body)
             novo.user_id = decoded.userId
 
-            console.log('novo ', novo)
+
             const endereco = await Endereco.create(novo)
             return res.status(200).json(endereco)
           } catch (error) {
@@ -152,7 +153,6 @@ class UserController {
           error: '401 - Unauthorized',
         })
       }
-      console.log('JWT_SECRET', JWT_SECRET)
       const token = jwt.sign(
         {
           userId: user[0].id,

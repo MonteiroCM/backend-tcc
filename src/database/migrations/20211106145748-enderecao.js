@@ -29,6 +29,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      numero: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      user_id: {
+        type: Sequelize.UUID,
+        allowNull: true,
+        references: { model: 'users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       cidade: {
         type: Sequelize.STRING,
         allowNull: false,

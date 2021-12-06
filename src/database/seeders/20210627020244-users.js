@@ -11,52 +11,41 @@ module.exports = {
 
 
     users.push({
-      nome: `Alessandro Nogueira68`,
-      email: 'Alessandro.Nogueira68@live.com',
+      nome: `Cliente`,
+      email: 'cliente@cliente.com.br',
+      tipo: 'CLIENTE',
       password: password,
       created_at: new Date(),
       updated_at: new Date(),
     })
 
-    for (var i = 0; i < 100; i++) {
+    users.push({
+      nome: `Administrador`,
+      email: 'Admin@admin.com.br',
+      tipo: 'ADMIN',
+      password: password,
+      created_at: new Date(),
+      updated_at: new Date(),
+    })
+
+    for (var i = 0; i < 10; i++) {
       let nome = faker.name.firstName()
       let sobrenome = faker.name.lastName()
 
       users.push({
         nome: `${nome} ${sobrenome}`,
         email: faker.internet.email(nome, sobrenome),
+        tipo: 'CLIENTE',
         password: password,
         created_at: new Date(),
         updated_at: new Date(),
       })
-
-      const [novoUser] = await Promise.all([
-        queryInterface.bulkInsert('users', users, {
-          returning: true,
-        })
-      ]);
-
-      console.log(novoUser[0].id)
-
-      clientes.push({
-        doc_cpf: faker.address.zipCode(),
-        dt_nascimento: faker.date.past(),
-        user_id: novoUser[0].id,
-        created_at: new Date(),
-        updated_at: new Date(),
-      })
-
-      const [novoCliente] = await Promise.all([
-        queryInterface.bulkInsert('clientes', clientes, {
-          returning: true,
-        })
-      ]);
-
-
-      console.log(`--> ${novoCliente[0].id}`)
-
     }
-
+    const [novoUser] = await Promise.all([
+      queryInterface.bulkInsert('users', users, {
+        returning: true,
+      })
+    ]);
 
   },
   down: (queryInterface, Sequelize) => {
