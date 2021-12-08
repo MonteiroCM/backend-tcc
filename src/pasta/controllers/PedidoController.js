@@ -38,21 +38,38 @@ class PedidoController {
 
             console.log('cliente >>>> ', novo.cliente_id)
 
-            const cliente = await Cliente.findOne({ where: { user_id: novo.cliente_id } })
+            //const cliente = await Cliente.findOne({ where: { user_id: novo.cliente_id } })
 
 
-            novo.cliente_id = cliente.id
+            novo.user_id = novo.cliente_id
 
             const pedido = await Pedido.create(novo)
 
             console.log('pedido > ', pedido)
 
+           let itensPedido = []
 
             await Promise.all([items.forEach(async (element) =>  {
+              try {
               console.log('element > ', element)
-              element.pedido_id = pedido.id
-              const Item = await PedidoItem.create(element)
+              //element.pedido_id = pedido.id
+              const Item = await PedidoItem.create({
+                produto_id: element.produto_id,
+                tamanho_id: element.tamanho_id,
+                valor: element.valor,
+                quantidade: element.quantidade,
+                pedido_id: pedido.id
+              })
+              //console.log('Item > ', Item)
+              itensPedido.push(element)
+              }catch (error) {
+            console.log(error)
+            return res.status(401).json(error.message || error)
+          }
             })])
+console.log('itensPedido > ', itensPedido)
+//const Item = await PedidoItem.create(itensPedido)
+
 
            //Bug tem que ter...
            var pedidoNovo3 = await Pedido.findByPk(pedido.id,{ include: [ { attributes: ['id','produto_id','valor'],  association: 'PedidoItem', include: [
@@ -62,9 +79,8 @@ class PedidoController {
             const [pedidoNovo] = await Promise.all([ Pedido.findByPk(pedido.id,{
               attributes: ['id','numero','status','data_pedido'],
               include: [
-                { attributes: ['id','doc_cpf','dt_nascimento'],  association: 'cliente', include: [
-                  { attributes: ['nome', 'email'],  association: 'user'},
-                ]},
+                { attributes: ['id','nome'],  
+                association: 'User',},
                 { attributes: ['id','produto_id','valor'],  association: 'PedidoItem', include: [
                   { attributes: ['nome'],  association: 'produto'},
                 ]},
@@ -84,16 +100,24 @@ class PedidoController {
   }
 
   async listar(req, res) {
-    const Pedidos = await Pedido.findAll({attributes: ['id','numero','status','data_pedido'],
-    order: [
+
+      const Pedidos = await Pedido.findAll({
+        attributes: ['id','numero','status','data_pedido'],
+         order: [
       ['numero', 'ASC'],
     ],
     where:{
       status: {
         [Op.ne]: 'Cancelado'
       }
-    }
-  })
+    },
+      include: [
+        { attributes: ['id','nome'],  association: 'User'},
+         { attributes: ['id','produto_id','valor', 'quantidade'],  association: 'PedidoItem', include: [
+                  { attributes: ['nome'],  association: 'produto'},
+                ]},
+      ],
+    })
 
     return res.status(200).json(Pedidos)
   }

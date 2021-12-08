@@ -7,7 +7,7 @@ class Pedido extends Model {
         numero: {
           type: DataTypes.INTEGER,
         },
-        cliente_id: DataTypes.UUID,
+        user_id: DataTypes.UUID,
         status: DataTypes.STRING,
         data_pedido: DataTypes.DATEONLY,
       },
@@ -20,7 +20,7 @@ class Pedido extends Model {
 
   static associate(models) {
     this.hasMany(models.PedidoItem, {foreignKey: 'pedido_id', as: 'PedidoItem' });
-    this.belongsTo(models.Cliente, { foreignKey: 'cliente_id', as: 'cliente' });
+    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'User' });
   }
 }
 
