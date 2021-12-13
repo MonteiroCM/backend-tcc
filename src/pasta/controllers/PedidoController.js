@@ -79,10 +79,10 @@ console.log('itensPedido > ', itensPedido)
             const [pedidoNovo] = await Promise.all([ Pedido.findByPk(pedido.id,{
               attributes: ['id','numero','status','data_pedido'],
               include: [
-                { attributes: ['id','nome'],  
+                { attributes: ['id','nome'],
                 association: 'User',},
                 { attributes: ['id','produto_id','valor'],  association: 'PedidoItem', include: [
-                  { attributes: ['nome'],  association: 'produto'},
+                  { attributes: ['nome'],  association: 'produto'}
                 ]},
 
               ],
