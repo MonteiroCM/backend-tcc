@@ -7,6 +7,9 @@ class PedidoItem extends Model {
         pedido_id: {type: DataTypes.UUID},
         produto_id: {type: DataTypes.UUID},
         valor: {type: DataTypes.DECIMAL},
+        quantidade: {type: DataTypes.INTEGER},
+        formapagamento: {type: DataTypes.STRING},
+        endereco: {type: DataTypes.STRING},
       },
       {
         sequelize,

@@ -58,7 +58,9 @@ class PedidoController {
                 tamanho_id: element.tamanho_id,
                 valor: element.valor,
                 quantidade: element.quantidade,
-                pedido_id: pedido.id
+                pedido_id: pedido.id,
+                formapagamento: novo.formapagamento,
+                endereco: novo.endereco,
               })
               //console.log('Item > ', Item)
               itensPedido.push(element)
@@ -104,7 +106,8 @@ console.log('itensPedido > ', itensPedido)
       const Pedidos = await Pedido.findAll({
         attributes: ['id','numero','status','data_pedido'],
          order: [
-      ['numero', 'ASC'],
+      ['data_pedido', 'DESC'],
+      ['numero', 'DESC'],
     ],
     where:{
       status: {
