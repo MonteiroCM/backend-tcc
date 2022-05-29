@@ -287,7 +287,30 @@ var resultado = []
       return res.status(200).json(resultado)
     }
 
-    return res.status(200).json(resultado)
+    if(codigo == 6){
+      const [results, metadata] = await sequelize.query(
+        `SELECT ROW_NUMBER() OVER (ORDER BY total DESC) AS sequencia, nome, total
+        FROM (
+        SELECT users.nome,SUM(valor) AS total FROM pedido_itens
+        INNER JOIN pedidos ON pedidos.id = pedido_itens.pedido_id
+        INNER JOIN users ON users.id = pedidos.user_id
+        GROUP BY users.nome
+        ORDER BY total DESC
+        LIMIT 10
+          ) as tab
+          ORDER BY total DESC
+          `,
+        { raw: true }
+      )
+
+      var valores = Object.entries(results[0])
+
+      console.log('valores', results)
+
+      return res.status(200).json(results)
+    }
+
+    return res.status(200).json(results)
   }
 
   async listar(req, res) {

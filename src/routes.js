@@ -49,6 +49,7 @@ App.delete('/itemvendas/:id', ItemVendaController.delete)
 
 //Rotas Pedidos
 App.post('/pedidos', PedidoController.store)
+App.post('/pedidosfiltro', PedidoController.listarPorFiltro)
 App.get('/pedidos', PedidoController.listar)
 App.put('/pedidos/:id', PedidoController.update)
 App.post('/upload/:id', FileController.upload)

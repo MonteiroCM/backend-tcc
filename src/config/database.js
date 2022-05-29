@@ -1,20 +1,14 @@
 module.exports = {
   dialect: 'postgres',
-  username: 'adm_clayton@claytonsrv.postgres.database.azure.com',
-  password: 'Banco10203040',
+  username: 'postgres',
+  password: '4022',
   port: '5432',
-  database: 'needfood',
-  host: 'claytonsrv.postgres.database.azure.com',
+  database: 'TCC',
+  host: '127.0.0.1',
   operatorAliases: false,
   define: {
     timestamps: true,
     underscored: true,
     underscoredAll: true,
   },
-  dialectOptions: {
-    encrypt: true,
-    ssl : {
-      rejectUnauthorized: false
-    }
-  }
 }

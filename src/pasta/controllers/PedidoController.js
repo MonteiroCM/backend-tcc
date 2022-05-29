@@ -103,6 +103,9 @@ console.log('itensPedido > ', itensPedido)
 
   async listar(req, res) {
 
+    const { filtro } = req.body
+    console.log('filtro = back',req.body, filtro)
+
       const Pedidos = await Pedido.findAll({
         attributes: ['id','numero','status','data_pedido'],
          order: [
@@ -112,6 +115,53 @@ console.log('itensPedido > ', itensPedido)
     where:{
       status: {
         [Op.ne]: 'Cancelado'
+      },
+      data_pedido:{
+        [Op.eq]: new Date()
+      }
+    },
+      include: [
+        { attributes: ['id','nome'],  association: 'User'},
+         { attributes: ['id','produto_id','valor', 'quantidade'],  association: 'PedidoItem', include: [
+                  { attributes: ['nome'],  association: 'produto'},
+                ]},
+      ],
+    })
+
+    return res.status(200).json(Pedidos)
+  }
+
+  async listarPorFiltro(req, res) {
+
+    const { filtro } = req.body
+    console.log('sava', filtro)
+
+    if(filtro.status.length == 0){
+
+      filtro.status = [
+        'Aberto',
+        'Preparando',
+        'Liberado',
+        'Enviado',
+        'Entreque',
+        'Cancelado'
+      ]
+    }
+      const Pedidos = await Pedido.findAll({
+        attributes: ['id','numero','status','data_pedido'],
+         order: [
+      ['data_pedido', 'DESC'],
+      ['numero', 'DESC'],
+    ],
+    where:{
+      status: {
+        [Op.ne]: 'Cancelado'
+      },
+      data_pedido:{
+        [Op.between]: [filtro.inicial, filtro.final]
+      },
+      status:{
+        [Op.in]: filtro.status
       }
     },
       include: [
