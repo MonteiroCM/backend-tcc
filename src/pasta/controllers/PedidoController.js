@@ -136,17 +136,26 @@ console.log('itensPedido > ', itensPedido)
     const { filtro } = req.body
     console.log('sava', filtro)
 
-    if(filtro.status.length == 0){
+        if(filtro.status){
+        if(filtro.status.length == 0){
 
-      filtro.status = [
+          filtro.status = [
+            'Aberto',
+            'Preparando',
+            'Liberado',
+            'Enviado',
+            'Entreque',
+            'Cancelado'
+          ]
+        }
+      }else{    filtro.status = [
         'Aberto',
         'Preparando',
         'Liberado',
         'Enviado',
         'Entreque',
         'Cancelado'
-      ]
-    }
+      ]}
       const Pedidos = await Pedido.findAll({
         attributes: ['id','numero','status','data_pedido'],
          order: [
