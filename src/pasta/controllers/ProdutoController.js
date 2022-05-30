@@ -56,7 +56,7 @@ var resultado = []
           UNION ALL
           select 0 as produtos, 0 as usuarios, count(*) as pedidos, 0 as pedido_dia from pedidos
           UNION ALL
-          select 0 as produtos, 0 as usuarios, 0 as pedidos, count(*) as pedido_dia from pedidos where data_pedido = now()::date
+          select 0 as produtos, 0 as usuarios, 0 as pedidos, count(*) as pedido_dia from pedidos where data_pedido::date = now()::date
           ) as tab`,
         { raw: true }
       )
