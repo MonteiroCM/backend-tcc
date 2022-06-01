@@ -156,23 +156,37 @@ console.log('itensPedido > ', itensPedido)
         'Entreque',
         'Cancelado'
       ]}
+
+      var tempWhere = {
+        status: {
+          [Op.ne]: 'Cancelado'
+        },
+        data_pedido:{
+          [Op.between]: [filtro.inicial, filtro.final]
+        },
+        status:{
+          [Op.in]: filtro.status
+        }
+      }
+
+      if(filtro.tipo){
+        if(filtro.tipo = 'CLIENTE'){
+              tempWhere = {
+                user_id:{
+                  [Op.eq]: filtro.id
+                }
+              }
+        }
+      }
+
+
       const Pedidos = await Pedido.findAll({
         attributes: ['id','numero','status','data_pedido'],
          order: [
       ['data_pedido', 'DESC'],
       ['numero', 'DESC'],
     ],
-    where:{
-      status: {
-        [Op.ne]: 'Cancelado'
-      },
-      data_pedido:{
-        [Op.between]: [filtro.inicial, filtro.final]
-      },
-      status:{
-        [Op.in]: filtro.status
-      }
-    },
+    where: tempWhere,
       include: [
         { attributes: ['id','nome'],  association: 'User'},
          { attributes: ['id','produto_id','valor', 'quantidade'],  association: 'PedidoItem', include: [

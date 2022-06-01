@@ -21,7 +21,7 @@ module.exports = {
 
     users.push({
       nome: `Administrador`,
-      email: 'Admin@admin.com.br',
+      email: 'admin@admin.com.br',
       tipo: 'ADMIN',
       password: password,
       created_at: new Date(),
