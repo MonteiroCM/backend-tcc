@@ -7,6 +7,7 @@ System developed for completion of graduate degree
 [![NPM][npm-image]][npm-url]
 [![Node-Js][nodejs-image]][nodejs-url]
 [![JavaScript][JavaScript-image]][JavaScript-url]
+[![Sequelize][Sequelize-image]][Sequelize-url]
 [![AWS][AWS-image]][AWS-url]
 [![Visual Studio Code][VisualStudioCode-image]][VisualStudioCode-url]
 
@@ -49,6 +50,7 @@ Bring knowledge about new technologies
 [JavaScript-image]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
 [AWS-image]: https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white
 [VisualStudioCode-image]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
+[Sequelize-image]: https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white
 
 [npm-url]:https://www.npmjs.com/package/datadog-metrics
 [nodejs-url]:https://nodejs.org/en/
@@ -57,3 +59,4 @@ Bring knowledge about new technologies
 [JavaScript-url]:https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
 [AWS-url]:https://aws.amazon.com/
 [VisualStudioCode-url]:https://code.visualstudio.com/
+[Sequelize-image]: https://sequelize.org/
