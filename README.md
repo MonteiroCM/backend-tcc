@@ -59,4 +59,4 @@ Bring knowledge about new technologies
 [JavaScript-url]:https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
 [AWS-url]:https://aws.amazon.com/
 [VisualStudioCode-url]:https://code.visualstudio.com/
-[Sequelize-image]: https://sequelize.org/
+[Sequelize-url]: https://sequelize.org/
