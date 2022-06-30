@@ -36,7 +36,7 @@ Bring knowledge about new technologies
 
 ## Contributing
 
-1. Backend-tcc (<https://github.com/yourname/backend-tcc/fork>)
+1. Backend-tcc (<https://github.com/MonteiroCM/backend-tcc/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
